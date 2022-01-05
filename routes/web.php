@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\API\ProductController;
-use App\Http\Controllers\ProductController as ControllersProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function (){
-    Route::get('dashboard', function (){ return view('dashboard'); })->name('dashboard');
-    Route::get('products', [ControllersProductController::class, 'index'])->name('products');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    Route::get('users', [UserController::class, 'index'])->name('users');
+    Route::resource('products', ProductController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::post('products/imageStore', [ProductController::class, 'imageStore'])->name('products/imageStore');
 });
