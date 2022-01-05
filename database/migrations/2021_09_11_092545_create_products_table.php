@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->bigInteger('product_categories_id');
             $table->string('name');
-            $table->longText('description');
+            $table->longText('description')->default('null');
             $table->string('tags')->nullable();
             $table->float('price');
             $table->softDeletes();
