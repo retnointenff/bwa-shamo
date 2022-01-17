@@ -16,7 +16,7 @@ class TransactionItems extends Model
         'quantity'
     ];
 
-    public function products()
+    public function product()
     {
         return $this->hasOne(Products::class, 'product_id', 'id');
     }
